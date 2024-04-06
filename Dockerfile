@@ -2,6 +2,9 @@ FROM golang:1.21 AS build-stage
 
 WORKDIR /term-api
 
+RUN apt-get update && apt-get install -y bash && rm -rf /var/lib/apt/lists/*
+RUN which bash || (echo "bash не найден" && exit 1)
+
 COPY go.mod go.sum ./
 RUN go mod download
 

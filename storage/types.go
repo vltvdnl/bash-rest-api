@@ -3,7 +3,6 @@ package storage
 import (
 	"bytes"
 	"context"
-	"log"
 	"os/exec"
 	"time"
 )
@@ -23,9 +22,8 @@ type Command struct {
 }
 
 func (c *Command) ScriptToCmd() (*exec.Cmd, error) {
-	cmd := exec.Command("bash")
+	cmd := exec.Command("bash", "-c")
 	stdin := bytes.NewBufferString(c.FullScript)
 	cmd.Stdin = stdin
-	log.Println(c.FullScript)
 	return cmd, nil
 }
