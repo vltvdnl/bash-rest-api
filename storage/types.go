@@ -22,7 +22,7 @@ type Command struct {
 }
 
 func (c *Command) ScriptToCmd() (*exec.Cmd, error) {
-	cmd := exec.Command("bash", "-c")
+	cmd := exec.Command("bash")
 	stdin := bytes.NewBufferString(c.FullScript)
 	cmd.Stdin = stdin
 	return cmd, nil
