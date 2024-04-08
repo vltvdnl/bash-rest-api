@@ -11,6 +11,7 @@ type Storage interface {
 	Save(ctx context.Context, c *Command)
 	PickByID(ctx context.Context, id int)
 	ShowALL(ctx context.Context) (*[]Command, error)
+	Delete(ctx context.Context, id int) error
 }
 type Command struct {
 	ID         int       `json:"id"`
