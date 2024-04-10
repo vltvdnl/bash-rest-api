@@ -1,30 +1,34 @@
 package storage
 
 import (
-	"bytes"
 	"context"
-	"os/exec"
 	"time"
 )
+
+type State int
+
+const (
+	Success State = iota
+	Running
+	Failed
+)
+
+func (s State) String() string {
+	return [...]string{"Success", "Running", "Failed"}[s]
+}
 
 type Storage interface {
 	Save(ctx context.Context, c *Command)
 	PickByID(ctx context.Context, id int)
-	ShowALL(ctx context.Context) (*[]Command, error)
+	ShowAll(ctx context.Context) (*[]Command, error)
 	Delete(ctx context.Context, id int) error
+	Update(ctx context.Context, c *Command) error
 }
 type Command struct {
 	ID         int       `json:"id"`
 	FullScript string    `json:"script"`
-	Success    bool      `json:"success"`
+	CMDStatus  string    `json:"cmdstatus"`
 	Output     string    `json:"output"`
-	CreatedAt  time.Time `json:"time"`
-	IsParallel bool      `json:"parallel"`
-}
-
-func (c *Command) ScriptToCmd() (*exec.Cmd, error) {
-	cmd := exec.Command("bash")
-	stdin := bytes.NewBufferString(c.FullScript)
-	cmd.Stdin = stdin
-	return cmd, nil
+	Start      time.Time `json:"start"`
+	End        time.Time `json:"end"`
 }
