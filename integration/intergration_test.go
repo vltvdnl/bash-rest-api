@@ -109,7 +109,7 @@ func TestRouter(t *testing.T) {
 			expectedStatusCode: http.StatusBadRequest,
 			expectedMessage:    "Wrong id format",
 		},
-	} // может стоит добавить ещё, посмотрим
+	}
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {

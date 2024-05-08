@@ -21,7 +21,7 @@
 
 ### Создание команды
 - **Метод**: POST
-- **URL**: `/api/run-command`
+- **URL**: `/api/add-command`
 - **Заголовок**:
     `Content-Type`: application/json
     `Authorization`: -
@@ -34,14 +34,20 @@
     "script": "Содержание вашей команды"
 }
 ```
+#### Пример запроса:
+```
+curl -d '{"script": "mkdir aa; cd aa; mkdir pp; mkdir jj; ls"}' \
+-H "Content-Type: application/json" \
+-X POST http://localhost:8080/api/add-command
+```
 
 
 ### Получение списка команд
 - **Метод**: GET
 - **URL**: `/api/show-commands`
 - **Заголовок**:
-    `Content-Type`: application/json
-    `Authorization`: ---
+    * `Content-Type`: application/json
+    * `Authorization`: ---
 #### Параметры: ---
 
 
@@ -49,8 +55,8 @@
 - **Метод**: POST
 - **URL**: `/api/show-commands/{id}`
 - **Заголовок**:
-    `Content-Type`: application/json
-    `Authorization`: ---
+    * `Content-Type`: application/json
+    * `Authorization`: ---
 #### Параметры: ---
 
 
