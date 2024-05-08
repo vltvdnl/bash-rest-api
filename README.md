@@ -23,8 +23,8 @@
 - **Метод**: POST
 - **URL**: `/api/add-command`
 - **Заголовок**:
-    `Content-Type`: application/json
-    `Authorization`: -
+    * `Content-Type`: application/json
+    * `Authorization`: -
 #### Параметры:
 - `script` (string, обязательный): Содержание команды
 
